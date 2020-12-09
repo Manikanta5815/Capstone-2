@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Diabetes Readmit{% endblock %}
+{% block content %}
+<body style="background-image: url('/static/imgs/dia.jpg'); background-size:100%">
+    <div class="container-fluid" style="color: rgb(255, 0, 76);">
+        <div class=" card display-4 my-2 text-center">Diabetes Readmit Status</div>
+        <hr/>
+            {% if result %}
+            <div class="card col-md-4 offset-md-4">
+                <div class="blink display-4 text-center">{{ result }} </div>
+            </div>
+            {% endif %}
+            <form class="row" method="POST" action="{% url 'dia_admit' %}">
+                {% csrf_token %}
+                <div class="card col-md-4 offset-md-4">
+                    number of lab procedures: <input name="nop"/><br/>
+                    Number of labs: <input name="nol"/><br/>
+                    Number of Medications: <input name="nom"/><br/>
+                    diag_1: <input name="d1"/><br/>
+                    diag_2: <input name="d2"/><br/>
+                    diag_3: <input name="d3"/><br/>
+                    number of diagnoses: <input name="nod"/><br/>
+                    Daibetes Med: <input name="DM"/><br/><br>
+                    <input type="submit" class="btn btn-danger" value="Predict"></input>
+                </div>
+            </form>    
+            <label for="med_y">Enter 1 if diabetes Medication is Yes</label><br>
+            <label for="med_n">Enter 0 if diabetes Medication is No</label><br>
+            
+    </div>   
+
+</body>
+{% endblock %}  
