@@ -6,11 +6,13 @@ router = routers.DefaultRouter()
 router.register('prediction', views.TestView)
 
 urlpatterns = [
-	path('', views.registerPage, name="register"),
-	path('login/', views.loginPage, name="login"),  
-	path('logout/', views.logoutUser, name="logout"),
-    path('home/', views.home, name="home"),
-    path('test/', views.test_take, name="test_take"),
+	path('', views.home,name='home'),
+    path('login',views.login,name='login'),
+    path('signup',views.signup,name='signup'),
+    path('diab_test',views.diab_test,name='diab_test'),
+	path('dia_admit',views.dia_admit,name='dia_admit'),
+    path('profile',views.profile,name='profile'),
 	path('api/',include(router.urls)),
 	
 ] 
+
