@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from django_userforeignkey.models.fields import UserForeignKey
 from django.contrib.auth.models import User,auth
 # Create your views here.
@@ -48,7 +47,6 @@ def login(request):
             return render(request,'login.html',context)
     else:
         return render(request,'login.html')
-
 @login_required(login_url='login')
 def home(request):
 	return render(request,'home.html')
@@ -66,7 +64,7 @@ def diab_test(request):
 		test.age=request.POST.get('age',None)
 		test.save()
 		data=list((request.POST).dict().values())[1:]
-		num_data=[int(i) for i in data ]
+		num_data=[float(i) for i in data ]
 		df_data=pd.DataFrame([num_data],columns=['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age'])
 		model=joblib.load("prediction\knn.pkl")
 		final_res=model.predict(df_data)[0]
@@ -137,3 +135,5 @@ def profile(request):
 class TestView(viewsets.ModelViewSet):
 	queryset = Test.objects.all()
 	serializer_class = TestSer
+
+
